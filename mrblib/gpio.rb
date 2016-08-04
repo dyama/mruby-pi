@@ -1,4 +1,3 @@
-
 module GPIO
   OUT  = 'out'
   IN   = 'in'
@@ -58,15 +57,4 @@ module GPIO
     end
   end
 end
-
-GPIO.open(17, GPIO::OUT) do |pin|
-  puts pin.no
-  puts pin.mode
-  pin.on
-  sleep 1
-  pin.off
-end
-
-pin = GPIO.open(23, GPIO::IN)
-pin.close
 
