@@ -10,15 +10,15 @@ mruby-pi written by 100% mruby script base, includes no C code.
 # Example
 
     GPIO.open(17, GPIO::OUT) do |pin|
-      puts pin.no   # => 17
-      puts pin.mode # => 'out'
+      p pin.no   # => 17
+      p pin.mode # => "out"
       pin.on
       sleep 1
       pin.off
     end
 
     pin = GPIO.open(23, GPIO::IN)
-    p pin.read
+    p pin.read   # => "1"
     pin.close
 
 # Lisence
