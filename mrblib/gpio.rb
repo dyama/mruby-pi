@@ -16,7 +16,7 @@ module GPIO
       File.open("#{GPIO::PATH}/export", "w") do |f|
         f.write "#{@no}\n"
       end
-      File.open("#{GPIO::PATH}/gpio#{@no}/direction") do |f|
+      File.open("#{GPIO::PATH}/gpio#{@no}/direction", "w") do |f|
         f.write "#{@mode}\n"
       end
     end
