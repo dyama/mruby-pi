@@ -1,7 +1,7 @@
 # About mruby-pi
 
 Minimum library for using GPIO on Raspberry Pi without WiringPi.
-mruby-pi written by 100% mruby script base, includes no C code.
+mruby-pi written by 100% mruby script includes no C code.
 
 # Dependencies
 
