@@ -11,6 +11,9 @@ module GPIO
     def initialize(no, mode)
       @no = no
       @mode = mode
+      self.open
+    end
+    def open
       File.open("#{GPIO::PATH}/export", "w") do |f|
         f.write "#{@no}\n"
       end
@@ -18,34 +21,28 @@ module GPIO
         f.write "#{@mode}\n"
       end
     end
-    def on
-      if @mode != GPIO::OUT
-        raise "Mode of the pin object is not OUT."
-      end
-      File.open("#{GPIO::PATH}/gpio#{@no}/value", "w") do |f|
-        f.write(GPIO::ON)
-      end
-    end
-    def off
-      if @mode != GPIO::OUT
-        raise "Mode of the pin object is not OUT."
-      end
-      File.open("#{GPIO::PATH}/gpio#{@no}/value", "w") do |f|
-        f.write(GPIO::OFF)
-      end
-    end
-    def read
-      if @mode != GPIO::IN
-        raise "Mode of the pin object is not IN."
-      end
-      File.open("#{GPIO::PATH}/gpio#{@no}/value", "r") do |f|
-        f.read.chomp
-      end
-    end
     def close
       File.open("#{GPIO::PATH}/unexport", "w") do |f|
         f.write "#{@no}\n"
       end
+    end
+    def write(s)
+      raise if @mode != GPIO::OUT
+      File.open("#{GPIO::PATH}/gpio#{@no}/value", "w") do |f|
+        f.write s
+      end
+    end
+    def read
+      raise if @mode != GPIO::IN
+      File.open("#{GPIO::PATH}/gpio#{@no}/value", "r") do |f|
+        f.read.chomp
+      end
+    end
+    def on
+      self.write "#{GPIO::ON}\n"
+    end
+    def off
+      self.write "#{GPIO::OFF}\n"
     end
   end
   def GPIO.open(no, mode = GPIO::OUT)
