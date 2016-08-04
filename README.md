@@ -1,6 +1,25 @@
-# mruby-pi
+# About mruby-pi
 
 Minimum library for using GPIO on Raspberry Pi without WiringPi.
+mruby-pi written by 100% mruby script base, includes no C code.
+
+# Dependencies
+
+* iij/mruby-io
+
+# Example
+
+    GPIO.open(17, GPIO::OUT) do |pin|
+      puts pin.no   # => 17
+      puts pin.mode # => 'out'
+      pin.on
+      sleep 1
+      pin.off
+    end
+
+    pin = GPIO.open(23, GPIO::IN)
+    p pin.read
+    pin.close
 
 # Lisence
 
